@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orunov Begench — Senior Android Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: #121826;
+      --panel-2: #171f2e;
+      --line: rgba(140, 170, 210, 0.18);
+      --text: #e8eef8;
+      --muted: #9aa8bd;
+      --accent: #5eb4f5;
+      --accent-2: #3d8fd6;
+      --glow: rgba(94, 180, 245, 0.22);
+      --ok: #6ec9a8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      background: #05070c;
+      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background:
+        radial-gradient(900px 420px at -10% -5%, rgba(94, 180, 245, 0.16), transparent 55%),
+        radial-gradient(700px 380px at 110% 8%, rgba(61, 143, 214, 0.12), transparent 50%),
+        linear-gradient(165deg, #0d1320 0%, #0b0f17 45%, #0a1019 100%);
+      padding: 12mm 11mm 10mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 28mm 1fr;
+      gap: 5.5mm;
+      align-items: center;
+      margin-bottom: 5.5mm;
+      position: relative;
+    }
+
+    .avatar {
+      width: 28mm;
+      height: 28mm;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid rgba(94, 180, 245, 0.45);
+      box-shadow: 0 0 0 4px rgba(94, 180, 245, 0.08), 0 12px 28px rgba(0,0,0,0.35);
+    }
+
+    .name {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 2mm;
+    }
+
+    .role {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5mm;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 3mm;
+    }
+
+    .role::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6mm 4mm;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .contacts span {
+      white-space: nowrap;
+    }
+
+    .contacts strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .team-banner {
+      position: relative;
+      margin-bottom: 5.5mm;
+      padding: 3.8mm 4.5mm;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg, rgba(94, 180, 245, 0.16), rgba(110, 201, 168, 0.08) 55%, rgba(94, 180, 245, 0.05));
+      border: 1px solid rgba(94, 180, 245, 0.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .team-banner::before {
+      content: "TEAM";
+      position: absolute;
+      right: 4mm;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+      color: rgba(94, 180, 245, 0.10);
+      pointer-events: none;
+    }
+
+    .team-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ok);
+      margin-bottom: 1.2mm;
+    }
+
+    .team-title {
+      font-family: "Syne", sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 1.2mm;
+    }
+
+    .team-text {
+      font-size: 10.5px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 165mm;
+    }
+
+    .team-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 58mm 1fr;
+      gap: 5.5mm;
+      position: relative;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 4.2mm;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(23, 31, 46, 0.95), rgba(18, 24, 38, 0.92));
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 3.5mm 3.8mm;
+    }
+
+    .section-title {
+      font-family: "Syne", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.8mm;
+      padding-bottom: 1.6mm;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .about {
+      font-size: 10.2px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .about strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5mm;
+    }
+
+    .chip {
+      font-size: 9.2px;
+      font-weight: 500;
+      color: var(--text);
+      background: rgba(94, 180, 245, 0.08);
+      border: 1px solid rgba(94, 180, 245, 0.22);
+      border-radius: 999px;
+      padding: 1.1mm 2.4mm;
+    }
+
+    .meta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2mm;
+    }
+
+    .meta-list li {
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .meta-list strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.4mm;
+    }
+
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 2mm;
+      font-size: 10px;
+      padding: 1.4mm 0;
+      border-bottom: 1px dashed rgba(140, 170, 210, 0.14);
+    }
+
+    .lang-row:last-child { border-bottom: 0; }
+
+    .lang-row span:last-child {
+      color: var(--accent);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 4.2mm;
+    }
+
+    .job {
+      position: relative;
+      padding-left: 3.8mm;
+    }
+
+    .job::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.2mm;
+      bottom: 0.5mm;
+      width: 1.5px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    .job + .job {
+      margin-top: 3.5mm;
+    }
+
+    .job-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 3mm;
+      align-items: baseline;
+      margin-bottom: 0.8mm;
+    }
+
+    .job-title {
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .job-date {
+      font-size: 9.5px;
+      color: var(--accent);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 1.6mm;
+    }
+
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+    }
+
+    .bullets li {
+      position: relative;
+      padding-left: 3.2mm;
+      font-size: 9.8px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.6mm;
+      width: 1.4mm;
+      height: 1.4mm;
+      border-radius: 50%;
+      background: var(--accent-2);
+    }
+
+    .bullets li .hl {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5mm;
+    }
+
+    .project {
+      background: rgba(94, 180, 245, 0.05);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2.6mm 3mm;
+    }
+
+    .project h4 {
+      font-size: 10.5px;
+      font-weight: 650;
+      margin-bottom: 0.8mm;
+    }
+
+    .project p {
+      font-size: 9.2px;
+      line-height: 1.35;
+      color: var(--muted);
+      margin-bottom: 1.2mm;
+    }
+
+    .project .tech {
+      font-size: 8.5px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .edu-item + .edu-item {
+      margin-top: 2.5mm;
+    }
+
+    .edu-item h4 {
+      font-size: 10.5px;
+      font-weight: 650;
+      margin-bottom: 0.5mm;
+    }
+
+    .edu-item .when {
+      font-size: 9px;
+      color: var(--accent);
+      margin-bottom: 0.6mm;
+    }
+
+    .edu-item p {
+      font-size: 9.5px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .footer {
+      margin-top: 4.5mm;
+      padding-top: 2.5mm;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 4mm;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media screen {
+      body { padding: 24px 0; }
+      .page {
+        box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="avatar" src="../assets/images/bega.jpeg" alt="Orunov Begench" />
+      <div>
+        <h1 class="name">Orunov Begench</h1>
+        <div class="role">Senior Android Developer · 6+ лет опыта</div>
+        <div class="contacts">
+          <span><strong>Email</strong> korgbega.00@gmail.com</span>
+          <span><strong>TM</strong> (+993) 62 787 618</span>
+          <span><strong>TR</strong> (+90) 552 367 1757</span>
+          <span><strong>Локация</strong> Ashgabat, Turkmenistan</span>
+          <span><strong>GitHub</strong> github.com/begaorun</span>
+          <span><strong>Telegram</strong> t.me/begaorun</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="team-banner">
+      <div class="team-label">Сильная сторона</div>
+      <div class="team-title">Умею и люблю работать в команде</div>
+      <p class="team-text">
+        Легко встраиваюсь в кросс-функциональные процессы с дизайнерами, backend и QA.
+        <strong>Менторю junior-разработчиков</strong>, провожу code review, выстраиваю общие стандарты качества
+        и довожу релизы до конца — с фокусом на доверие, коммуникацию и общий результат.
+      </p>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="card">
+          <h2 class="section-title">Обо мне</h2>
+          <p class="about">
+            Senior Android Developer с <strong>6+ годами</strong> production-опыта.
+            Специализируюсь на <strong>Kotlin, MVVM и Clean Architecture</strong>:
+            поддерживаемый код, стабильные релизы и быстрая доставка фич.
+            Фокус — производительность, эффективность API и измеримый бизнес-эффект.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">Tech Stack</h2>
+          <div class="chip-list">
+            <span class="chip">Kotlin</span>
+            <span class="chip">Java</span>
+            <span class="chip">MVVM</span>
+            <span class="chip">MVI</span>
+            <span class="chip">Clean Architecture</span>
+            <span class="chip">Coroutines</span>
+            <span class="chip">Flow</span>
+            <span class="chip">Retrofit</span>
+            <span class="chip">Ktor</span>
+            <span class="chip">Room</span>
+            <span class="chip">SQLite</span>
+            <span class="chip">Hilt</span>
+            <span class="chip">Dagger</span>
+            <span class="chip">Firebase</span>
+            <span class="chip">Git</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">Языки</h2>
+          <div class="lang-row"><span>Туркменский</span><span>Родной</span></div>
+          <div class="lang-row"><span>Русский</span><span>Продвинутый</span></div>
+          <div class="lang-row"><span>Английский</span><span>Базовый</span></div>
+          <div class="lang-row"><span>Турецкий</span><span>Базовый</span></div>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">Командные навыки</h2>
+          <ul class="meta-list">
+            <li><strong>Team leadership</strong> планирование, архитектура, delivery</li>
+            <li><strong>Mentoring &amp; code review</strong> рост команды и единый уровень качества</li>
+            <li><strong>Agile collaboration</strong> совместная работа с product, design и QA</li>
+            <li><strong>Ownership</strong> ответственность за стабильность и релизы</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="card">
+          <h2 class="section-title">Опыт</h2>
+
+          <article class="job">
+            <div class="job-head">
+              <h3 class="job-title">Android Developer</h3>
+              <div class="job-date">04.2023 — н.в.</div>
+            </div>
+            <div class="job-company">Jan Technology</div>
+            <ul class="bullets">
+              <li>Разрабатывал Android-фичи на Java/Kotlin и участвовал в end-to-end релизах продукта.</li>
+              <li>Внедрил локальное хранение на SQLite/Room и улучшил offline-сценарии ключевых пользовательских потоков.</li>
+              <li>Собрал переиспользуемый networking-слой на Retrofit — меньше дублирования, быстрее реализация.</li>
+              <li><span class="hl">В паре с QA</span> закрывал дефекты и повышал уверенность в production-релизах.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3 class="job-title">Android Developer</h3>
+              <div class="job-date">10.2022 — 03.2023</div>
+            </div>
+            <div class="job-company">Milli Goshant</div>
+            <ul class="bullets">
+              <li>Разработал и вывел в прод ключевые модули на Kotlin + MVVM + Clean Architecture для высоконагруженного приложения.</li>
+              <li>Оптимизировал сеть и кеширование (Retrofit, Coroutines, Flow) — быстрее обработка API-ответов.</li>
+              <li>Внедрил модульный UI и переиспользуемые domain-слои для масштабируемости и скорости релизов.</li>
+              <li><span class="hl">Вместе с backend и QA</span> оперативно закрывал production-инциденты и повышал стабильность.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3 class="job-title">Android Developer</h3>
+              <div class="job-date">03.2022 — 10.2022</div>
+            </div>
+            <div class="job-company">Turkmenportal</div>
+            <ul class="bullets">
+              <li>Собрал news/media-фичи на Kotlin, Retrofit и Room — выше надёжность загрузки контента.</li>
+              <li>Перевёл legacy-экраны на MVVM: читаемее код, меньше регрессий.</li>
+              <li>Подключил Firebase Analytics и crash monitoring для быстрой обратной связи по релизам.</li>
+              <li><span class="hl">В Agile-спринтах с дизайнерами и PM</span> стабильно доставлял пользовательские фичи в срок.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3 class="job-title">Android Developer · Team Lead</h3>
+              <div class="job-date">10.2020 — 03.2022</div>
+            </div>
+            <div class="job-company">Salam HJ</div>
+            <ul class="bullets">
+              <li><span class="hl">Вёл Android-разработку</span> нескольких production-приложений: планирование, архитектура, delivery.</li>
+              <li>Внедрил Clean Architecture и DI (Hilt/Dagger) — выше поддерживаемость кода для всей команды.</li>
+              <li>Улучшил производительность через профилирование: плавнее старт и переходы между экранами.</li>
+              <li><span class="hl">Менторил junior-ов</span>, проводил code review и зафиксировал engineering-стандарты качества.</li>
+              <li>Интегрировал REST API через Retrofit и async-потоки на Coroutines.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">Проекты</h2>
+          <div class="projects">
+            <div class="project">
+              <h4>Salam News</h4>
+              <p>Быстрая новостная платформа с категориями и обновлениями в реальном времени.</p>
+              <div class="tech">Kotlin · MVVM · Retrofit · Firebase</div>
+            </div>
+            <div class="project">
+              <h4>Turkmenistan Railways</h4>
+              <p>Официальное приложение: расписание, маршруты и управление поездками.</p>
+              <div class="tech">Kotlin · Clean Architecture · Retrofit · Room</div>
+            </div>
+            <div class="project">
+              <h4>Belet</h4>
+              <p>Стриминг фильмов, сериалов и спорта с плавным playback.</p>
+              <div class="tech">Kotlin · MVVM · Retrofit · Firebase</div>
+            </div>
+            <div class="project">
+              <h4>Ýunus Market</h4>
+              <p>Онлайн-маркет: быстрый заказ, поиск по каталогу, доставка.</p>
+              <div class="tech">Kotlin · Clean Architecture · Retrofit · Room</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">Образование</h2>
+          <div class="edu-item">
+            <h4>Turkmen State Institute of Economics and Management</h4>
+            <div class="when">2018 — 2023</div>
+            <p>Программирование, основы ПО и управление проектами.</p>
+          </div>
+          <div class="edu-item">
+            <h4>2nd Specialized School, Farap, Lebap</h4>
+            <div class="when">2007 — 2018</div>
+            <p>Углублённое изучение английского, русского, информатики и математики.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div>Готов работать в сильной команде · открыт к новым Android-проектам</div>
+      <div>
+        <a href="https://begaorun.github.io">begaorun.github.io</a>
+        · WhatsApp +993 62 787 618
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

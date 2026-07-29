@@ -164,7 +164,7 @@ const i18nElements = document.querySelectorAll("[data-i18n]");
 
 const translations = {
   en: {
-    role: "Middle Android Developer",
+    role: "Senior Android Developer",
     show_contacts: "Show Contacts",
     email: "Email",
     phone: "Phone",
@@ -174,7 +174,7 @@ const translations = {
     nav_resume: "Resume",
     nav_portfolio: "Portfolio",
     about_title: "About Me",
-    about_p1: "Middle Android Developer with 6+ years of production experience building and scaling reliable mobile products.",
+    about_p1: "Senior Android Developer with 6+ years of production experience building and scaling reliable mobile products.",
     about_p2: "I specialize in Kotlin, MVVM and Clean Architecture to deliver maintainable code, stable releases, and faster feature delivery.",
     about_p3: "I focus on performance optimization, API efficiency, and strong cross-functional teamwork to turn product goals into measurable business impact.",
     languages_title: "Languages",
@@ -201,7 +201,7 @@ const translations = {
     project_yunus_desc: "An online grocery app with fast ordering, smart catalog search, and convenient home delivery flows."
   },
   ru: {
-    role: "Middle Android Developer",
+    role: "Senior Android Developer",
     show_contacts: "Показать контакты",
     email: "Эл. почта",
     phone: "Телефон",
@@ -211,7 +211,7 @@ const translations = {
     nav_resume: "Резюме",
     nav_portfolio: "Портфолио",
     about_title: "Обо мне",
-    about_p1: "Middle Android Developer с 6+ годами коммерческого опыта в разработке и масштабировании надежных мобильных продуктов.",
+    about_p1: "Senior Android Developer с 6+ годами коммерческого опыта в разработке и масштабировании надежных мобильных продуктов.",
     about_p2: "Специализируюсь на Kotlin, MVVM и Clean Architecture, чтобы выпускать поддерживаемый код, стабильные релизы и быстрее доставлять фичи.",
     about_p3: "Фокусируюсь на оптимизации производительности, эффективности API и сильной командной работе для достижения измеримого бизнес-результата.",
     languages_title: "Языки",
@@ -238,7 +238,7 @@ const translations = {
     project_yunus_desc: "Онлайн-приложение для покупок продуктов с быстрым заказом, удобным поиском и доставкой на дом."
   },
   tr: {
-    role: "Middle Android Developer",
+    role: "Senior Android Developer",
     show_contacts: "İletişimi Göster",
     email: "E-posta",
     phone: "Telefon",
@@ -248,7 +248,7 @@ const translations = {
     nav_resume: "Özgeçmiş",
     nav_portfolio: "Portföy",
     about_title: "Hakkımda",
-    about_p1: "Güvenilir mobil ürünler geliştirme ve ölçekleme konusunda 6+ yıllık üretim deneyimine sahip bir Middle Android Developer.",
+    about_p1: "Güvenilir mobil ürünler geliştirme ve ölçekleme konusunda 6+ yıllık üretim deneyimine sahip bir Senior Android Developer.",
     about_p2: "Bakımı kolay kod, stabil sürümler ve daha hızlı özellik teslimi için Kotlin, MVVM ve Clean Architecture üzerine uzmanlaştım.",
     about_p3: "Ölçülebilir iş etkisi için performans optimizasyonu, API verimliliği ve güçlü ekip iş birliğine odaklanıyorum.",
     languages_title: "Diller",
